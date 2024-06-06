@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Stopwatch by javascript</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="sub">
+      <div class="header">
+        <h2>Stopwatch Timer</h2>
+        <h2 id="time">00:00:00</h2>
+      </div>
+      <div class="icons">
+        <div class="icons1">
+          <img src="resume.png" style="height: 100px; width: 100px;" onclick="stop()">
+        </div>
+        <div class="icons2">
+          <img src="play.png" style="height: 100px; width: 100px;" onclick="start()">
+        </div>
+        <div class="icons3">
+          <img src="reset.png" style="height: 80px; width: 85px;" onclick="reset()">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    let seconds = 0
+    let minutes = 0
+    let hours = 0
+    let timer = 0
+    let time = document.getElementById("time")
+    function counter() {
+      seconds++
+      if (seconds == 60) {
+        seconds = 0
+        minutes++
+        if (minutes == 60) {
+          minutes = 0
+          hours++
+        }
+      }
+      let h = hours < 10 ? "0" + hours : hours
+      let m = minutes < 10 ? "0" + minutes : minutes
+      let s = seconds < 10 ? "0" + seconds : seconds
+      console.log(s)
+      time.innerHTML = h + ":" + m + ":" + s
+    }
+    function start() {
+      timer = setInterval(counter, 1000);
+      console.log(timer);
+    }
+    function stop() {
+      clearInterval(timer)
+    }
+    function reset() {
+      clearInterval(timer)
+      seconds = 0
+      minutes = 0
+      hours = 0
+      time.innerHTML = "00:00:00"
+    }
+  </script>
+</body>
+
+</html>
